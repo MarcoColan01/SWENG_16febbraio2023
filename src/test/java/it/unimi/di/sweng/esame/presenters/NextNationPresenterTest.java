@@ -40,4 +40,12 @@ class NextNationPresenterTest {
         SUT.action("", "IT EE PL ES EE");
         verify(view).showError("Duplicated votes");
     }
+
+    @Test
+    void testVotoOk(){
+        NextNationView view = mock(NextNationView.class);
+        NextNationPresenter SUT = new NextNationPresenter(view);
+        SUT.action("Spagna", "IT EE PL SE UA");
+        verify(view).showSuccess();
+    }
 }
