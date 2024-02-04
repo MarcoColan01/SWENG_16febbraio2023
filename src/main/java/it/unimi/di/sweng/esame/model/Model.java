@@ -15,9 +15,8 @@ import java.util.*;
 
 public class Model implements Observable<List<Voto>> {
 
-    private final @NotNull List<Nazione> nazioni = new ArrayList<>();
-    private final @NotNull Map<Nazione, Voto> voti = new HashMap<>();
-    private final @NotNull Map<Nazione, Integer> punti = new HashMap<>();
+    //private final @NotNull Map<Nazione, Voto> voti = new HashMap<>();
+    private final @NotNull Map<Nazione, Punteggio> punti = new HashMap<>();
 
     private final @NotNull List<Observer<List<Voto>>> observers = new ArrayList<>();
 
@@ -31,29 +30,24 @@ public class Model implements Observable<List<Voto>> {
             String[] el = linea.split(";");
             String name = el[0];
             String cod = el[1];
-            nazioni.add(Nazione.valueOf(cod));
+            punti.put(Nazione.valueOf(cod), new Punteggio(Nazione.valueOf(cod), 0));
         }
     }
 
-    public List<Nazione> getNazioni() {
-        return new ArrayList<>(nazioni);
-    }
-
     public void addVoto(@NotNull Voto voto) {
-        if (!voti.containsKey(voto.nazione())) voti.put(voto.nazione(), voto);
         int points = 5;
         for (Nazione nazione : voto.votate()) {
-            punti.put(nazione, points);
+            punti.put(nazione, new Punteggio(nazione, points));
             points--;
         }
     }
 
-    public List<Voto> getVoti() {
-        return new ArrayList<>(voti.values());
+    public List<Punteggio> getPunti() {
+        return new ArrayList<>(punti.values());
     }
 
     public int getPunti(@NotNull String nazione) {
-        return punti.get(Nazione.valueOf(nazione));
+        return punti.get(Nazione.valueOf(nazione)).punti();
     }
 
     @Override

@@ -12,7 +12,7 @@ class ModelTest {
     void readFileTest(){
         Model SUT = new Model();
         SUT.readFile();
-        assertThat(SUT.getNazioni()).hasSize(16);
+        assertThat(SUT.getPunti()).hasSize(16);
     }
 
     @Test
@@ -20,7 +20,7 @@ class ModelTest {
         Model SUT = new Model();
         Voto voto = Voto.creaVoto("Grecia", "IT ES PL NL EE");
         SUT.addVoto(voto);
-        assertThat(SUT.getVoti()).contains(voto);
+        assertThat(SUT.getPunti()).hasSize(5);
     }
 
     @Test
