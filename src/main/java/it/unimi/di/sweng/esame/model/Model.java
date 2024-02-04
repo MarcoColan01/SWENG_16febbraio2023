@@ -2,6 +2,7 @@ package it.unimi.di.sweng.esame.model;
 
 
 import it.unimi.di.sweng.esame.Main;
+import it.unimi.di.sweng.esame.presenters.Voto;
 
 
 import java.io.InputStream;
@@ -25,5 +26,9 @@ public class Model {
 
       System.out.printf("cod: [%s] name: [%s]\n", cod, name);
     }
+  }
+
+  public List<Voto> getVotesByNation() {
+    return null;
   }
 }
