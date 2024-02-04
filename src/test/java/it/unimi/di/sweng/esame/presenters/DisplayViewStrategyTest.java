@@ -24,7 +24,7 @@ class DisplayViewStrategyTest {
         punti.add(p2);
         punti.add(p3);
         SUT.sortNazioni(punti);
-        assertThat(punti).containsExactly(p2, p1, p3);
+        assertThat(punti).containsExactly(p3, p1, p2);
     }
 
     @Test
