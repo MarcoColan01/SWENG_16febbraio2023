@@ -7,16 +7,14 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class BestSongsStrategy implements DisplayViewStrategy {
-
+public class WorstSongsStrategy implements DisplayViewStrategy {
     @Override
-    public void sortNazioni(List<Punteggio> punti) {
+    public void sortNazioni(@NotNull List<Punteggio> punti) {
         punti.sort((o1, o2) -> {
-            int res = Integer.compare(o2.punti(), o1.punti());
-            if(res == 0) return o1.nazione().nome().compareTo(o2.nazione().nome());
+            int res = Integer.compare(o1.punti(), o2.punti());
+            if (res == 0) return o1.nazione().nome().compareTo(o2.nazione().nome());
             return res;
         });
-
     }
 
     @Override
@@ -24,8 +22,9 @@ public class BestSongsStrategy implements DisplayViewStrategy {
         List<String> nazioni = new ArrayList<>();
         sortNazioni(punti);
         int i = 0;
-        for(Nazione nazione: voto.votate()){
-            nazioni.add(String.format("%s\t[%d] [%d]", nazione.nome(), 5-i, punti.get(i).punti()));
+        System.out.println(punti);
+        for (Nazione nazione : voto.votate()) {
+            nazioni.add(String.format("%s\t%d", punti.get(i).nazione().nome(), punti.get(i).punti()));
             i++;
         }
         return nazioni;
