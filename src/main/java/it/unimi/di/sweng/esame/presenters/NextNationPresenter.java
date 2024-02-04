@@ -16,35 +16,11 @@ public class NextNationPresenter implements Presenter {
 
     @Override
     public void action(String nazioneCorrente, String voto) {
-        String[] voti = voto.split(" ");
-        if (voti.length != 5) {
-            view.showError("Invalid number of votes");
-            return;
-        }
-        String err = "";
         try {
-            for (String nazione : voti) {
-                err = nazione;
-                Nazione n = Nazione.valueOf(nazione);
-            }
+            Voto v = Voto.creaVoto(voto, nazioneCorrente);
+            view.showSuccess();
         } catch (IllegalArgumentException e) {
-            view.showError(String.format("Invalid vote code: %s", err));
-            return;
+            view.showError(e.getMessage());
         }
-        for (String v : voti) {
-            if (v.equals(Nazione.getCodice(nazioneCorrente))) {
-                view.showError("You cannot vote for yourself");
-                return;
-            }
-        }
-
-        Map<String, Boolean> presenze = new HashMap<>();
-        for (String v : voti) {
-            if (presenze.containsKey(v)) {
-                view.showError("Duplicated votes");
-                return;
-            } else presenze.put(v, true);
-        }
-        view.showSuccess();
     }
 }

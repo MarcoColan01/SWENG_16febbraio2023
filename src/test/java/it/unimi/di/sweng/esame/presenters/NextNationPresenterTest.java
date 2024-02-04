@@ -13,7 +13,7 @@ class NextNationPresenterTest {
     void testVotoLength(){
         NextNationView view = mock(NextNationView.class);
         NextNationPresenter SUT = new NextNationPresenter(view);
-        SUT.action("", "IT EE PL ES");
+        SUT.action("Grecia", "IT EE PL ES");
         verify(view).showError("Invalid number of votes");
     }
 
@@ -21,7 +21,7 @@ class NextNationPresenterTest {
     void testVotoNazioneNonPresente(){
         NextNationView view = mock(NextNationView.class);
         NextNationPresenter SUT = new NextNationPresenter(view);
-        SUT.action("", "IT EE PL ES DF");
+        SUT.action("Grecia", "IT EE PL ES DF");
         verify(view).showError("Invalid vote code: DF");
     }
 
@@ -37,7 +37,7 @@ class NextNationPresenterTest {
     void testVotoDuplicato(){
         NextNationView view = mock(NextNationView.class);
         NextNationPresenter SUT = new NextNationPresenter(view);
-        SUT.action("", "IT EE PL ES EE");
+        SUT.action("Grecia", "IT EE PL ES EE");
         verify(view).showError("Duplicated votes");
     }
 
