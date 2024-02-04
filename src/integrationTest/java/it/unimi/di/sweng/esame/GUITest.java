@@ -100,7 +100,7 @@ public class GUITest {
     verifyThat(leftLabels[2], hasText(matchesPattern("Portogallo *\\[3] *3")));
   }
 
-  @ParameterizedTest(name = "{0} -> {1}")@Disabled
+  @ParameterizedTest(name = "{0} -> {1}")
   @CsvSource({"IT, Invalid number of votes",
       "IT AZ PT AU UK, You cannot vote for yourself",
       "IT AZ PP NL UK, Invalid vote code: PP",
