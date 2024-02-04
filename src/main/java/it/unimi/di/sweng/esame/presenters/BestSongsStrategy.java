@@ -26,6 +26,7 @@ public class BestSongsStrategy implements DisplayViewStrategy {
         int i = 0;
         for(Nazione nazione: voto.votate()){
             nazioni.add(String.format("%s\t[%d] [%d]", nazione.nome(), 5-i, punti.get(i).punti()));
+            i++;
         }
         return nazioni;
     }
