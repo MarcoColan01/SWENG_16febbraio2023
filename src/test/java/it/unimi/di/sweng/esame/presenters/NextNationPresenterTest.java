@@ -24,4 +24,12 @@ class NextNationPresenterTest {
         SUT.action("", "IT EE PL ES DF");
         verify(view).showError("Invalid vote code: DF");
     }
+
+    @Test
+    void testVotoNazioneSeStessa(){
+        NextNationView view = mock(NextNationView.class);
+        NextNationPresenter SUT = new NextNationPresenter(view);
+        SUT.action("", "IT EE AU ES NL");
+        verify(view).showError("You cannot vote for yourself");
+    }
 }
