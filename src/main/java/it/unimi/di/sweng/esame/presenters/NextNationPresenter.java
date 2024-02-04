@@ -45,5 +45,6 @@ public class NextNationPresenter implements Presenter {
                 return;
             } else presenze.put(v, true);
         }
+        view.showSuccess();
     }
 }
