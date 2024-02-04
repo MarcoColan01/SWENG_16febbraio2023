@@ -26,4 +26,22 @@ class DisplayViewStrategyTest {
         SUT.sortNazioni(punti);
         assertThat(punti).containsExactly(p2, p1, p3);
     }
+
+    @Test
+    void testBestSongsDisplay(){
+        DisplayViewStrategy SUT = new BestSongsStrategy();
+        List<Punteggio> punti = new ArrayList<>();
+        Voto voto = Voto.creaVoto("Italia", "ES UK PL NL PT");
+        Punteggio p1 = new Punteggio(Nazione.valueOf("ES"), 5);
+        Punteggio p2 = new Punteggio(Nazione.valueOf("UK"), 4);
+        Punteggio p3 = new Punteggio(Nazione.valueOf("PL"), 3);
+        Punteggio p4 = new Punteggio(Nazione.valueOf("NL"), 2);
+        Punteggio p5 = new Punteggio(Nazione.valueOf("PT"), 1);
+        punti.add(p1);
+        punti.add(p2);
+        punti.add(p3);
+        punti.add(p4);
+        punti.add(p5);
+        assertThat(SUT.printNazioni(punti, voto).get(0)).isEqualTo("Spagna\t[5] [5]");
+    }
 }

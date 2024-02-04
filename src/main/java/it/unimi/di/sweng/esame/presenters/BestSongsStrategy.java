@@ -1,6 +1,7 @@
 package it.unimi.di.sweng.esame.presenters;
 
 import it.unimi.di.sweng.esame.model.Punteggio;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.List;
@@ -15,5 +16,10 @@ public class BestSongsStrategy implements DisplayViewStrategy {
             return res;
         });
 
+    }
+
+    @Override
+    public List<String> printNazioni(@NotNull List<Punteggio> punti, @NotNull Voto voto) {
+        return null;
     }
 }
