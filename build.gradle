@@ -2,10 +2,10 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.13'
-    id "org.unbroken-dome.test-sets" version "4.0.0"
+    id "org.unbroken-dome.test-sets" version "4.1.0"
 }
 
-application.mainClassName = 'it.unimi.di.sweng.esame.Main'
+application.mainClass = 'it.unimi.di.sweng.esame.Main'
 
 javafx {
     version = '17'
