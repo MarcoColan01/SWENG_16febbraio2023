@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public record Voto(@NotNull Nazione nazione, @NotNull Nazione[] votate) {
-    public static Voto creaVoto(@NotNull String voto, @NotNull String votante) {
+    public static Voto creaVoto(@NotNull String votante, @NotNull String voto) {
         String[] voti = voto.split(" ");
         if (voti.length != 5)
             throw new IllegalArgumentException("Invalid number of votes");
@@ -30,5 +30,14 @@ public record Voto(@NotNull Nazione nazione, @NotNull Nazione[] votate) {
         }
 
         return new Voto(Nazione.valueOf(Nazione.getCodice(votante)), nazioni);
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(nazione().nome());
+        for(Nazione nazione: votate)
+            sb.append(nazione).append(" ");
+        return sb.deleteCharAt(sb.length()-1).toString();
     }
 }
