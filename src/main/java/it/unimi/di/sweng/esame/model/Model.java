@@ -15,6 +15,7 @@ public class Model {
 
   private final @NotNull List<Nazione> nazioni = new ArrayList<>();
   private final @NotNull Map<Nazione, Voto> voti = new HashMap<>();
+  private final @NotNull Map<Nazione, Integer> punti = new HashMap<>();
 
   public void readFile() {
     InputStream is = Main.class.getResourceAsStream("/FinalistNations");
@@ -35,7 +36,12 @@ public class Model {
   }
 
   public void addVoto(@NotNull Voto voto) {
-    voti.put(voto.nazione(), voto);
+   if(!voti.containsKey(voto.nazione())) voti.put(voto.nazione(), voto);
+   int points = 5;
+   for(Nazione nazione: voto.votate()){
+     punti.put(nazione, points);
+     points--;
+   }
   }
 
   public List<Voto> getVoti() {
@@ -43,6 +49,6 @@ public class Model {
   }
 
   public int getPunti(@NotNull String nazione) {
-    return 0;
+    return punti.get(Nazione.valueOf(nazione));
   }
 }
