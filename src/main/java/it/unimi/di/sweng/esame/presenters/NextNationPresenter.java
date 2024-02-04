@@ -17,7 +17,7 @@ public class NextNationPresenter implements Presenter {
     @Override
     public void action(String nazioneCorrente, String voto) {
         try {
-            Voto v = Voto.creaVoto(voto, nazioneCorrente);
+            Voto v = Voto.creaVoto(nazioneCorrente, voto);
             view.showSuccess();
         } catch (IllegalArgumentException e) {
             view.showError(e.getMessage());

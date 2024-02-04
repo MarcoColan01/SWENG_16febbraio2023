@@ -14,7 +14,7 @@ import java.util.*;
 public class Model {
 
   private final @NotNull List<Nazione> nazioni = new ArrayList<>();
-  //private final @NotNull Map<Nazione, Voto> voti = new HashMap<>();
+  private final @NotNull Map<Nazione, Voto> voti = new HashMap<>();
 
   public void readFile() {
     InputStream is = Main.class.getResourceAsStream("/FinalistNations");
@@ -34,10 +34,11 @@ public class Model {
     return new ArrayList<>(nazioni);
   }
 
-  public void addVoto(Voto voto) {
+  public void addVoto(@NotNull Voto voto) {
+    voti.put(voto.nazione(), voto);
   }
 
   public List<Voto> getVoti() {
-    return null;
+    return new ArrayList<>(voti.values());
   }
 }
