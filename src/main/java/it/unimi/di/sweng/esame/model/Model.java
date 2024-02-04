@@ -30,14 +30,15 @@ public class Model implements Observable<List<Voto>> {
             String[] el = linea.split(";");
             String name = el[0];
             String cod = el[1];
-            punti.put(Nazione.valueOf(cod), new Punteggio(Nazione.valueOf(cod), 0));
+            punti.put(Nazione.valueOf(cod), new Punteggio(Nazione.valueOf(cod), 0, 0));
         }
     }
 
     public void addVoto(@NotNull Voto voto) {
         int points = 5;
         for (Nazione nazione : voto.votate()) {
-            punti.put(nazione, new Punteggio(nazione, points));
+            if(points == 5) punti.put(nazione, new Punteggio(nazione, points, 1));
+            else punti.put(nazione, new Punteggio(nazione, points, 0));
             points--;
         }
     }
