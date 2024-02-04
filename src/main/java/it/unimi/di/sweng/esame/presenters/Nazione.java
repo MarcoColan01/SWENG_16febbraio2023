@@ -23,6 +23,16 @@ public enum Nazione {
     Nazione(@NotNull String nome){
         this.nome = nome;
     }
+
+    public static String getCodice(@NotNull String nazioneCorrente) {
+        for(Nazione nazione: Nazione.values()){
+            if(nazione.nome.equals(nazioneCorrente)) {
+                return nazione.name();
+            }
+        }
+        return null;
+    }
+
     public String nome(){
         return nome;
     }

@@ -3,17 +3,21 @@ package it.unimi.di.sweng.esame.presenters;
 import it.unimi.di.sweng.esame.views.NextNationView;
 import org.jetbrains.annotations.NotNull;
 
-public class NextNationPresenter implements Presenter{
+import java.util.HashMap;
+import java.util.Map;
+
+public class NextNationPresenter implements Presenter {
     private final @NotNull NextNationView view;
+
     public NextNationPresenter(@NotNull NextNationView view) {
         this.view = view;
         view.addHandlers(this);
     }
 
     @Override
-    public void action(String comando, String voto) {
+    public void action(String nazioneCorrente, String voto) {
         String[] voti = voto.split(" ");
-        if(voti.length != 5){
+        if (voti.length != 5) {
             view.showError("Invalid number of votes");
             return;
         }
@@ -23,17 +27,23 @@ public class NextNationPresenter implements Presenter{
                 err = nazione;
                 Nazione n = Nazione.valueOf(nazione);
             }
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             view.showError(String.format("Invalid vote code: %s", err));
             return;
         }
-        for(Nazione nazione: Nazione.values()){
-            for(String v: voti){
-                if(v.equals(nazione.name())){
-                    view.showError("You cannot vote for yourself");
-                    return;
-                }
+        for (String v : voti) {
+            if (v.equals(Nazione.getCodice(nazioneCorrente))) {
+                view.showError("You cannot vote for yourself");
+                return;
             }
+        }
+
+        Map<String, Boolean> presenze = new HashMap<>();
+        for (String v : voti) {
+            if (presenze.containsKey(v)) {
+                view.showError("Duplicated votes");
+                return;
+            } else presenze.put(v, true);
         }
     }
 }

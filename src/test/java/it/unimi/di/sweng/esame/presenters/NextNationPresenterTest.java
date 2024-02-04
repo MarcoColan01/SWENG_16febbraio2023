@@ -29,7 +29,7 @@ class NextNationPresenterTest {
     void testVotoNazioneSeStessa(){
         NextNationView view = mock(NextNationView.class);
         NextNationPresenter SUT = new NextNationPresenter(view);
-        SUT.action("", "IT EE AU ES NL");
+        SUT.action("Spagna", "IT EE AU ES NL");
         verify(view).showError("You cannot vote for yourself");
     }
 
