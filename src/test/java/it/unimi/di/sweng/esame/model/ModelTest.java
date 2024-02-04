@@ -1,5 +1,6 @@
 package it.unimi.di.sweng.esame.model;
 
+import it.unimi.di.sweng.esame.presenters.Voto;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,5 +13,13 @@ class ModelTest {
         Model SUT = new Model();
         SUT.readFile();
         assertThat(SUT.getNazioni()).hasSize(16);
+    }
+
+    @Test
+    void testAddVoto(){
+        Model SUT = new Model();
+        Voto voto = Voto.creaVoto("Grecia", "IT ES PL NL EE");
+        SUT.addVoto(voto);
+        assertThat(SUT.getVoti()).contains(voto);
     }
 }

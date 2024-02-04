@@ -33,4 +33,11 @@ public class Model {
   public List<Nazione> getNazioni() {
     return new ArrayList<>(nazioni);
   }
+
+  public void addVoto(Voto voto) {
+  }
+
+  public List<Voto> getVoti() {
+    return null;
+  }
 }
