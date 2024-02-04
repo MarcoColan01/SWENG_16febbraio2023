@@ -2,7 +2,9 @@ package it.unimi.di.sweng.esame.model;
 
 
 import it.unimi.di.sweng.esame.Main;
+import it.unimi.di.sweng.esame.presenters.Nazione;
 import it.unimi.di.sweng.esame.presenters.Voto;
+import org.jetbrains.annotations.NotNull;
 
 
 import java.io.InputStream;
@@ -11,7 +13,8 @@ import java.util.*;
 
 public class Model {
 
-  //TODO completare la classe
+  private final @NotNull List<Nazione> nazioni = new ArrayList<>();
+  //private final @NotNull Map<Nazione, Voto> voti = new HashMap<>();
 
   public void readFile() {
     InputStream is = Main.class.getResourceAsStream("/FinalistNations");
@@ -23,12 +26,11 @@ public class Model {
       String[] el = linea.split(";");
       String name = el[0];
       String cod = el[1];
-
-      System.out.printf("cod: [%s] name: [%s]\n", cod, name);
+      nazioni.add(Nazione.valueOf(cod));
     }
   }
 
-  public List<Voto> getVotesByNation() {
-    return null;
+  public List<Nazione> getNazioni() {
+    return new ArrayList<>(nazioni);
   }
 }
