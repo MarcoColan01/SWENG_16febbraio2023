@@ -16,4 +16,12 @@ class NextNationPresenterTest {
         SUT.action("", "IT EE PL ES");
         verify(view).showError("Invalid number of votes");
     }
+
+    @Test
+    void testVotoNazioneNonPresente(){
+        NextNationView view = mock(NextNationView.class);
+        NextNationPresenter SUT = new NextNationPresenter(view);
+        SUT.action("", "IT EE PL ES DF");
+        verify(view).showError("Invalid vote code: DF");
+    }
 }
