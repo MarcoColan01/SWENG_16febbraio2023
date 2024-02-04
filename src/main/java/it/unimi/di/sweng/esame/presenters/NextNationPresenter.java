@@ -25,6 +25,15 @@ public class NextNationPresenter implements Presenter{
             }
         }catch (IllegalArgumentException e){
             view.showError(String.format("Invalid vote code: %s", err));
+            return;
+        }
+        for(Nazione nazione: Nazione.values()){
+            for(String v: voti){
+                if(v.equals(nazione.name())){
+                    view.showError("You cannot vote for yourself");
+                    return;
+                }
+            }
         }
     }
 }
