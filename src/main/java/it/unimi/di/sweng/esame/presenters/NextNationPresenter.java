@@ -17,5 +17,14 @@ public class NextNationPresenter implements Presenter{
             view.showError("Invalid number of votes");
             return;
         }
+        String err = "";
+        try {
+            for (String nazione : voti) {
+                err = nazione;
+                Nazione n = Nazione.valueOf(nazione);
+            }
+        }catch (IllegalArgumentException e){
+            view.showError(String.format("Invalid vote code: %s", err));
+        }
     }
 }
