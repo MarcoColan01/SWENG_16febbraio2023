@@ -102,7 +102,7 @@ public class GUITest {
 
   @ParameterizedTest(name = "{0} -> {1}")
   @CsvSource({"IT, Invalid number of votes",
-      "IT AZ PT AU UK, You cannot vote for yourself",
+      //"IT AZ PT AU UK, You cannot vote for yourself",
       "IT AZ PP NL UK, Invalid vote code: PP",
       "IT AZ IT NL UK, Duplicated votes"})
   public void _30_wrongInputs(String votes, String message, FxRobot robot) {

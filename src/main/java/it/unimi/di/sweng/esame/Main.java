@@ -3,6 +3,7 @@ package it.unimi.di.sweng.esame;
 
 import it.unimi.di.sweng.esame.model.Model;
 
+import it.unimi.di.sweng.esame.presenters.NextNationPresenter;
 import it.unimi.di.sweng.esame.views.NextNationView;
 import it.unimi.di.sweng.esame.views.DisplayView;
 import javafx.application.Application;
@@ -50,7 +51,7 @@ public class Main extends Application {
     //TODO creare presenters e connettere model e view
     Model model = new Model();
     model.readFile();
-
+    NextNationPresenter inputPresenter = new NextNationPresenter(nextNationVotes);
     // HINT: per aggiornare lo stao viste all'inizio
     // model.notifyObservers();
 
