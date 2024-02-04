@@ -41,4 +41,8 @@ public class Model {
   public List<Voto> getVoti() {
     return new ArrayList<>(voti.values());
   }
+
+  public int getPunti(@NotNull String nazione) {
+    return 0;
+  }
 }
